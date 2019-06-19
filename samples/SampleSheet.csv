@@ -1,0 +1,46 @@
+[Header]
+IEMFileVersion,4
+Investigator Name,Kay
+Experiment Name,HS755
+Date,5/16/2019
+Workflow,GenerateFASTQ
+Application,HiSeq FASTQ Only
+Assay,TruSeq LT
+Description,HS755 EM Nick Burton PE50 12x RNASeq
+Chemistry,Default
+
+[Reads]
+51
+51
+
+[Settings]
+ReverseComplement,0
+Adapter,AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+AdapterRead2,AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+[Data]
+Lane,Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,Sample_Project,Description
+1,N2_emb_HB101_1,,,,A013,AGTCAA,,
+1,N2_emb_HB101_2,,,,A014,AGTTCC,,
+1,N2_emb_HB101_3,,,,A015,ATGTCA,,
+1,N2_emb_PA14_1,,,,A016,CCGTCC,,
+1,N2_emb_PA14_2,,,,A018,GTCCGC,,
+1,N2_emb_PA14_3,,,,A019,GTGAAA,,
+1,N2_emb_P_lum_1,,,,A020,GTGGCC,,
+1,N2_emb_P_lum_2,,,,A021,GTTTCG,,
+1,N2_emb_P_lum_3,,,,A022,CGTACG,,
+1,NOB27_emb_HB_1,,,,A023,GAGTGG,,
+1,NOB27_emb_HB_2,,,,A025,ACTGAT,,
+1,NOB27_emb_HB_3,,,,A027,ATTCCT,,
+2,N2_emb_HB101_1,,,,A013,AGTCAA,,
+2,N2_emb_HB101_2,,,,A014,AGTTCC,,
+2,N2_emb_HB101_3,,,,A015,ATGTCA,,
+2,N2_emb_PA14_1,,,,A016,CCGTCC,,
+2,N2_emb_PA14_2,,,,A018,GTCCGC,,
+2,N2_emb_PA14_3,,,,A019,GTGAAA,,
+2,N2_emb_P_lum_1,,,,A020,GTGGCC,,
+2,N2_emb_P_lum_2,,,,A021,GTTTCG,,
+2,N2_emb_P_lum_3,,,,A022,CGTACG,,
+2,NOB27_emb_HB_1,,,,A023,GAGTGG,,
+2,NOB27_emb_HB_2,,,,A025,ACTGAT,,
+2,NOB27_emb_HB_3,,,,A027,ATTCCT,,

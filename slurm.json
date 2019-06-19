@@ -1,0 +1,65 @@
+{
+    "__default__" :
+    {
+        "A" : "overall",
+        "time" : "240:00:00",
+        "nodes": 1,
+        "ntasks": 1,
+        "cpus" : 1,
+        "p" : "IACT",
+        "jobName" : "{rule}{wildcards}",
+        "output": "{rule}{wildcards}%A.o",
+        "error": "{rule}{wildcards}%A.e",
+        "mailUser": "cr517@cam.ac.uk",
+        "mailType": "ALL"
+    },
+
+    "fastqc" :
+    {
+        "output" : "output/log/job/output/{rule}/{wildcards}.o",
+        "error"  : "output/log/job/error/{rule}/{wildcards}.e"
+    },
+
+    "quantify" :
+    {
+        "cpus" : 8
+    },
+
+    "comment":
+    {
+        "STAR": "cannot use 24 cores or else the alignment will crash due to opening too many files"
+    },
+
+    "STARwormbase" :
+    {
+        "cpus" : 8
+    },
+
+    "hisat2ensembl" :
+    {
+        "cpus" : 8,
+        "output": "output/log/job/output/{rule}{wildcards}.o",
+        "error": "output/log/job/error/{rule}{wildcards}.e"
+    },
+
+    "sortByName" :
+    {
+        "cpus" : 6
+    },
+
+    "featureCounts" :
+    {
+        "cpus" : 8
+    },
+
+    "featureCountsAll" :
+    {
+        "cpus" : 8
+    },
+
+    "featureCountsAllMultimappersMultioverlappers" :
+    {
+        "cpus" : 8
+    }
+
+}

@@ -1,0 +1,41 @@
+name: gff3toembl
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - blas=1.0
+  - bzip2=1.0.6
+  - ca-certificates=2018.11.29
+  - certifi=2018.11.29
+  - ftputil=3.4
+  - genometools=1.2.1
+  - genometools-genometools=1.5.10
+  - gettext=0.19.8.1
+  - gff3toembl=1.1.4
+  - intel-openmp=2019.1
+  - libcxx=7.0.0
+  - libffi=3.2.1
+  - libgfortran=3.0.1
+  - libiconv=1.15
+  - llvm-meta=7.0.0
+  - mkl=2019.1
+  - mkl_fft=1.0.10
+  - mkl_random=1.0.2
+  - ncurses=6.1
+  - numpy=1.15.4
+  - numpy-base=1.15.4
+  - openssl=1.1.1a
+  - pip=19.0.1
+  - python=2.7.15
+  - readline=7.0
+  - requests=2.13.0
+  - setuptools=40.8.0
+  - six=1.12.0
+  - sqlite=3.26.0
+  - tk=8.6.9
+  - unicodecsv=0.14.1
+  - wheel=0.32.3
+  - xmltodict=0.11.0
+  - xz=5.2.4
+  - zlib=1.2.11
