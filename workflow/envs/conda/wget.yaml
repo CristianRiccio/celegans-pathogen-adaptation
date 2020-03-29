@@ -1,0 +1,17 @@
+name: wget
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - ca-certificates=2019.3.9
+  - gettext=0.19.8.1
+  - libcxx=8.0.0
+  - libcxxabi=8.0.0
+  - libffi=3.2.1
+  - libiconv=1.15
+  - libidn2=2.1.1
+  - libunistring=0.9.10
+  - openssl=1.1.1b
+  - wget=1.20.1
+  - zlib=1.2.11
