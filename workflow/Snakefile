@@ -75,47 +75,6 @@ rule target:
 # snakemake --jobs 2000 --cluster-config slurm.json --cluster "sbatch -A {cluster.A} -p {cluster.p} -t {cluster.time} --job-name {cluster.jobName} --output {cluster.output} --error {cluster.error} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus} --mail-type {cluster.mailType} --mail-user {cluster.mailUser}" -n
 # snakemake --profile slurm -n
 
-# Copy the raw data from the input folder to the output folder
-# I downloaded the raw data from https://basespace.illumina.com
-# I then moved the datasets out of their subfolders into
-# the folder named HS678 (or HS755) using `mv input/HS755/*/* input/HS755`
-# (or `mv input/HS678/*/* input/HS678`)
-# I then manually deleted all the empty folders from the Finder
-# Note that it is OK to move the datasets out of their subfolders
-# and delete the subfolders because the subfolder names
-# contain a subset of the information contained in the dataset names
-# Then, transfer the raw data to SLURM
-
-def findDataset(wildcards):
-    import pandas
-    HSrunNumber = int(wildcards[0])
-    wormStrain = wildcards[1]
-    stage = wildcards[2]
-    bacterium = wildcards[3]
-    replicate = int(wildcards[4])
-    readOrientation = int(wildcards[5])
-    lane = int(wildcards[6])
-    samples = pandas.read_csv('samples/datasets.tsv', sep = '\t')
-    dataset = samples.dataset[(samples.HSrunNumber == HSrunNumber) & (samples.wormStrain == wormStrain) & (samples.stage == stage) & (samples.bacterium == bacterium) & (samples.replicate == replicate) & (samples.lane == lane) & (samples.readOrientation == readOrientation)]
-    # File path 'input/HS678/N2-adult-HB101-3_S3_L002_R2_001.fastq.gz  '
-    # ends with whitespace.
-    # This is likely unintended.
-    # It can also lead to inconsistent results of the file-matching
-    # approach used by Snakemake.
-    # That's why I used .rstrip() to remove trailing whitespace at the end
-    # of the name of dataset. This is a more robust approach than manually
-    # removing whitespace from the datasets table.
-    return 'input/HS' + str(HSrunNumber) + '/' + str(dataset.iloc[0]).rstrip()
-
-rule moveAndRenameData:
-    input: findDataset
-    output:
-        temp('output/HS{HSrunNumber}/reads/rna/illumina/celegans/raw/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R{readOrientation}/lane/L{lane}.fq.gz')
-    shell:
-        'cp {input} {output}'
-# local
-# snakemake --cores 8 output/HS678/reads/rna/illumina/celegans/raw/n2/{adults,embryos}/{hb101,BIGb446,BIGb468}/repl{1,2,3}/R{1,2}/lane/L{1,2}.fq.gz output/HS755/reads/rna/illumina/celegans/raw/n2/embryos/{hb101,pa14,plum}/repl{1,2,3}/R{1,2}/lane/L{1,2}.fq.gz output/HS755/reads/rna/illumina/celegans/raw/nob27/embryos/hb101/repl{1,2,3}/R{1,2}/lane/L{1,2}.fq.gz -n
-
 # Merge fastq files together that come from the
 # same sample and have reads in the same direction
 # but have been produced in different lanes
