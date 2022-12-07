@@ -75,27 +75,6 @@ rule target:
 # snakemake --jobs 2000 --cluster-config slurm.json --cluster "sbatch -A {cluster.A} -p {cluster.p} -t {cluster.time} --job-name {cluster.jobName} --output {cluster.output} --error {cluster.error} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus} --mail-type {cluster.mailType} --mail-user {cluster.mailUser}" -n
 # snakemake --profile slurm -n
 
-# Merge fastq files together that come from the
-# same sample and have reads in the same direction
-# but have been produced in different lanes
-# (The sequencing technician from the Gurdon Institute showed me the 2 lanes on the machine)
-rule mergeLanes:
-    input:
-        fastq1 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/raw/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R{readOrientation}/lane/L1.fq.gz',
-        fastq2 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/raw/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R{readOrientation}/lane/L2.fq.gz',
-    output:
-        temp('output/HS{HSrunNumber}/reads/rna/illumina/celegans/merged/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R{readOrientation}/L1L2.fq.gz')
-    benchmark:
-        'output/benchmark/mergeLanes/HS{HSrunNumber}/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R{readOrientation}.tsv'
-    shell:
-        'cat {input.fastq1} {input.fastq2} > {output}'
-'''
-snakemake --cores 8 output/HS678/reads/rna/illumina/celegans/merged/n2/{adults,embryos}/{hb101,BIGb446,BIGb468}/repl{1,2,3}/R{1,2}/L1L2.fq.gz \
-output/HS755/reads/rna/illumina/celegans/merged/n2/embryos/{hb101,pa14,plum}/repl{1,2,3}/R{1,2}/L1L2.fq.gz \
-output/HS755/reads/rna/illumina/celegans/merged/nob27/embryos/hb101/repl{1,2,3}/R{1,2}/L1L2.fq.gz \
--n
-'''
-
 # Remove adapter sequence, low quality bases at the end of the reads (< Q20) and reads shorter than 40 bp
 rule cutadapt:
     input:
