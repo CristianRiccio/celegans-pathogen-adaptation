@@ -1,4 +1,4 @@
-localrules: moveAndRenameData, mergeLanes, nbMappedPairedReads
+localrules: nbMappedPairedReads
 # alias snakemake="snakemake --cores 7 --resources downloads=1 irods=10 --use-conda --printshellcmds --keep-going --reason --rerun-incomplete"
 
 import pandas
