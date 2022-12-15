@@ -55,6 +55,7 @@ include: 'rules/convert.smk'
 include: 'rules/subset.smk'
 include: 'rules/plot.smk'
 include: 'rules/GOanalysis.smk'
+include: 'rules/validate.smk'
 
 rule target:
     input:
@@ -79,7 +80,9 @@ rule target:
 rule cutadapt:
     input:
         reads1 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/merged/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R1/L1L2.fq.gz',
+        reads1_fqtools_validate = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/merged/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R1/L1L2_fqtools_validate.txt',
         reads2 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/merged/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R2/L1L2.fq.gz',
+        reads2_fqtools_validate = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/merged/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R2/L1L2_fqtools_validate.txt',
     output:
         trimmed1 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/trimmed/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R1/L1L2.fq.gz',
         trimmed2 = 'output/HS{HSrunNumber}/reads/rna/illumina/celegans/trimmed/{wormStrain}/{stage}/{bacterium}/repl{replicate}/R2/L1L2.fq.gz',
@@ -97,7 +100,7 @@ rule cutadapt:
         adapterRead1 = lambda wildcards: config['adapterRead1HS' + str(wildcards[0])],
         adapterRead2 = lambda wildcards: config['adapterRead2HS' + str(wildcards[0])],
     conda:
-        'envs/conda/cutadapt1_18.yaml'
+        'envs/conda/cutadapt1.18.yaml'
     shell:
         'cutadapt --adapter {params.adapterRead1} -A {params.adapterRead2} -q 20 --minimum-length 40 --too-short-output {output.tooShort1} --too-short-paired-output {output.tooShort2} --output {output.trimmed1} -p {output.trimmed2} {input.reads1} {input.reads2} > {log} 2>&1'
 '''
