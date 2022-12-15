@@ -1,9 +1,0 @@
-name: subread
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - libgcc-ng=7.3.0
-  - subread=1.6.3
-  - zlib=1.2.11

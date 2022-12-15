@@ -1,7 +1,0 @@
-name: star2.7.0e
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - star=2.7.0e
